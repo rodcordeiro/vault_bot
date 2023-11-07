@@ -150,6 +150,18 @@ export default class BuildsCommand extends BaseCommand {
               .setAutocomplete(true)
               .setRequired(true),
           ),
+      )
+      .addSubcommand((subcommand) =>
+        subcommand
+          .setName('delete')
+          .setDescription('Delete a  build')
+          .addStringOption((option) =>
+            option
+              .setName('build')
+              .setDescription('Select the build to delete')
+              .setAutocomplete(true)
+              .setRequired(true),
+          ),
       );
     super(data);
   }
@@ -174,9 +186,10 @@ export default class BuildsCommand extends BaseCommand {
       await actionsMapper(interaction);
     } catch (err) {
       console.error(err);
-      await interaction.editReply(
-        "Whops... Couldn't process. Try again later, please.",
-      );
+      const action = interaction.replied
+        ? interaction.editReply
+        : interaction.reply;
+      await action("Whops... Couldn't process. Try again later, please.");
     }
   }
 }

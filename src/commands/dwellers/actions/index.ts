@@ -3,6 +3,7 @@ import { ListDwellers } from './list';
 import { CreateDweller } from './create';
 import { UpdateDweller } from './update';
 import { ViewDweller } from './view';
+import { DeleteDweller } from './delete';
 
 export const actionsMapper = async (
   interaction: ChatInputCommandInteraction,
@@ -20,8 +21,15 @@ export const actionsMapper = async (
     case 'view':
       ViewDweller(interaction);
       break;
+    case 'delete':
+      DeleteDweller(interaction);
+      break;
     default:
       console.log(interaction);
-      interaction.editReply('Whops... Lost myself. Do you mind trying again?');
+      interaction.replied
+        ? interaction.editReply(
+            'Whops... Lost myself. Do you mind trying again?',
+          )
+        : interaction.reply('Whops... Lost myself. Do you mind trying again?');
   }
 };

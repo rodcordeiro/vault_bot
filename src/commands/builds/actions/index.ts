@@ -3,6 +3,7 @@ import { ListBuilds } from './list';
 import { CreateBuild } from './create';
 import { UpdateBuild } from './update';
 import { ViewBuild } from './view';
+import { DeleteBuild } from './delete';
 
 export const actionsMapper = async (
   interaction: ChatInputCommandInteraction,
@@ -20,8 +21,15 @@ export const actionsMapper = async (
     case 'view':
       ViewBuild(interaction);
       break;
+    case 'delete':
+      DeleteBuild(interaction);
+      break;
     default:
       console.log(interaction);
-      interaction.editReply('Whops... Lost myself. Do you mind trying again?');
+      interaction.replied
+        ? interaction.editReply(
+            'Whops... Lost myself. Do you mind trying again?',
+          )
+        : interaction.reply('Whops... Lost myself. Do you mind trying again?');
   }
 };

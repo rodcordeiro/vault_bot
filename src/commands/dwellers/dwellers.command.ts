@@ -210,6 +210,18 @@ export default class DwellersListCommand extends BaseCommand {
               .setAutocomplete(true)
               .setRequired(true),
           ),
+      )
+      .addSubcommand((subcommand) =>
+        subcommand
+          .setName('delete')
+          .setDescription('Delete a dweller')
+          .addStringOption((option) =>
+            option
+              .setName('dweller')
+              .setDescription('Select the dweller to delete')
+              .setAutocomplete(true)
+              .setRequired(true),
+          ),
       );
 
     super(data);
@@ -247,9 +259,10 @@ export default class DwellersListCommand extends BaseCommand {
       await actionsMapper(interaction);
     } catch (err) {
       console.error(err);
-      await interaction.editReply(
-        "Whops... Couldn't process. Try again later, please.",
-      );
+      const action = interaction.replied
+        ? interaction.editReply
+        : interaction.reply;
+      await action("Whops... Couldn't process. Try again later, please.");
     }
   }
 }
