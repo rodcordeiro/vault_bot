@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ChatInputCommandInteraction } from 'discord.js';
-import { DwellerServices } from 'src/services/dweller.service';
-import { DwellerProfileEmbed } from '../utils/list.embed';
+import { BuildsService } from 'src/services/build.service';
+import { BuildEmbeded } from '../../utils/list.embed';
 
-export const CreateDweller = async (
-  interaction: ChatInputCommandInteraction,
-) => {
+export const CreateBuild = async (interaction: ChatInputCommandInteraction) => {
   await interaction.deferReply({ ephemeral: false });
   const fields = Object.fromEntries(
     interaction.options.data[0].options?.map((option) => [
@@ -14,12 +11,13 @@ export const CreateDweller = async (
     ]) || [],
   );
 
-  const dweller = await DwellerServices.store({
+  const build = await BuildsService.store({
     ...fields,
+    max_workers: +(fields.combined || 1) * 2,
     owner: interaction.user.id,
   });
 
-  const embed = DwellerProfileEmbed(dweller);
+  const embed = BuildEmbeded(build);
 
   return await interaction.editReply({
     embeds: [embed],

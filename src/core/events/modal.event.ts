@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment  */
 import { Events } from 'discord.js';
 
 import { client } from 'src/core/discord/client.discord';
@@ -10,14 +9,13 @@ client.on(Events.InteractionCreate, async (interaction) => {
       (handler) => handler.modal === interaction.customId,
     );
     if (handler) {
-      // @ts-ignore
       const command = client.commands?.get(handler?.command);
-      if (command.modalHandler) {
-        await command.modalHandler(interaction);
+      if (command?.modalHandler) {
+        await command?.modalHandler(interaction);
+        return;
       }
-    } else {
-      await interaction.reply('Modal handler not implemented.');
     }
+    await interaction.reply('Modal handler not implemented.');
   } catch (err) {
     console.error(err);
     await interaction.reply('Modal handler not implemented.');

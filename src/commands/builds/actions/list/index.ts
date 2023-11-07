@@ -1,16 +1,15 @@
 import { ChatInputCommandInteraction } from 'discord.js';
 import { Pagination } from 'pagination.djs';
 import { createBatch } from 'src/common/helpers/batch.helper';
-import { DwellerServices } from 'src/services/dweller.service';
-import { DwellersEmbed } from '../utils/list.embed';
+import { PaginatedBuildEmbeded } from '../../utils/list.embed';
+import { BuildsService } from 'src/services/build.service';
 
-export const ListDwellers = async (
-  interaction: ChatInputCommandInteraction,
-) => {
+export const ListBuilds = async (interaction: ChatInputCommandInteraction) => {
   await interaction.deferReply({ ephemeral: false });
-  const dwellers = await DwellerServices.list(interaction.user.id);
-  const Embeds = createBatch(dwellers, 6).map((data, index, arr) =>
-    DwellersEmbed(data, index + 1, arr.length),
+  const builds = await BuildsService.list(interaction.user.id);
+
+  const Embeds = createBatch(builds, 6).map((data, index, arr) =>
+    PaginatedBuildEmbeded(data, index + 1, arr.length),
   );
 
   if (Embeds.length === 1) {

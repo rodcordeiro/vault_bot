@@ -2,16 +2,21 @@
 import { Events } from 'discord.js';
 
 import { client } from '../discord/client.discord';
-// @ts-ignore
+
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
-  // @ts-ignore
   const command = client.commands?.get(interaction.commandName);
   if (!command || !command.execute) {
-    return interaction.reply('Command not found or has no execution routine!');
+    interaction.reply('Command not found or has no execution routine!');
+    return;
   }
+
   try {
+    if (process.env.NODE_ENV === 'production' && command.maintenance) {
+      await command.maintenanceActions(interaction);
+      return;
+    }
     await command.execute(interaction);
   } catch (error) {
     console.error(`Error executing ${interaction.commandName}`);

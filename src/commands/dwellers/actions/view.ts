@@ -1,21 +1,13 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ChatInputCommandInteraction } from 'discord.js';
 import { DwellerServices } from 'src/services/dweller.service';
 import { DwellerProfileEmbed } from '../utils/list.embed';
 
-export const CreateDweller = async (
-  interaction: ChatInputCommandInteraction,
-) => {
+export const ViewDweller = async (interaction: ChatInputCommandInteraction) => {
   await interaction.deferReply({ ephemeral: false });
-  const fields = Object.fromEntries(
-    interaction.options.data[0].options?.map((option) => [
-      option.name,
-      option.value,
-    ]) || [],
-  );
+  const id = interaction.options.getString('dweller');
 
-  const dweller = await DwellerServices.store({
-    ...fields,
+  const dweller = await DwellerServices.findOne({
+    id: String(id),
     owner: interaction.user.id,
   });
 

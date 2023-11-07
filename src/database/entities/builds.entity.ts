@@ -18,6 +18,9 @@ export class BuildEntity extends BaseEntity {
   @Column({ type: 'int', default: 2 })
   max_workers!: number;
 
+  @Column({ type: 'int', default: 1 })
+  combined!: number;
+
   /** JOINS */
   @OneToOne(() => JobsEntity, (job) => job.place)
   job?: string;

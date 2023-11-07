@@ -24,25 +24,25 @@ export class DwellersLogEntity extends BaseEntity {
   mother?: string;
 
   @Column({ type: 'int' })
-  Strength!: number;
+  strength!: number;
 
   @Column({ type: 'int' })
-  Perception!: number;
+  perception!: number;
 
   @Column({ type: 'int' })
-  Endurance!: number;
+  endurance!: number;
 
   @Column({ type: 'int' })
-  Charisma!: number;
+  charism!: number;
 
   @Column({ type: 'int' })
-  Intelligence!: number;
+  intelligence!: number;
 
   @Column({ type: 'int' })
-  Agility!: number;
+  agility!: number;
 
   @Column({ type: 'int' })
-  Luck!: number;
+  luck!: number;
 
   /** JOINS */
   /** METHODS */

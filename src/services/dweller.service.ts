@@ -8,9 +8,13 @@ import { DwellersEntity } from 'src/database/entities/dwellers.entity';
 import { Model } from 'src/common/interfaces/database.interface';
 
 export class DwellerServices {
-  static async list() {
+  static async list(owner: string) {
     return await DwellersRepository.find({
       relationLoadStrategy: 'join',
+      where: { owner },
+      order: {
+        name: 'ASC',
+      },
     });
   }
 
@@ -22,8 +26,13 @@ export class DwellerServices {
   }
 
   static async store(payload: Model<DwellersEntity>) {
+    if (payload.father) {
+      this.logParents(payload.father, payload.mother!);
+    }
     const dweller = DwellersRepository.create(payload);
-    return await DwellersRepository.save(dweller);
+    await DwellersRepository.save(dweller);
+    await DwellerServices.logDweller(dweller);
+    return dweller;
   }
 
   static async update(id: string, payload: Model<DwellersEntity>) {
@@ -41,6 +50,7 @@ export class DwellerServices {
     await DwellersRepository.findOneByOrFail({ id });
     await DwellersRepository.delete({ id });
   }
+
   static async logDweller(dweller: Model<DwellersEntity, true>) {
     const log = DwellersLogRepository.create({
       dweller: dweller.id,
@@ -49,14 +59,21 @@ export class DwellerServices {
       lvl: dweller.lvl,
       father: dweller.father,
       mother: dweller.mother,
-      Strength: dweller.Strength,
-      Perception: dweller.Perception,
-      Endurance: dweller.Endurance,
-      Charisma: dweller.Charisma,
-      Intelligence: dweller.Intelligence,
-      Agility: dweller.Agility,
-      Luck: dweller.Luck,
+      strength: dweller.strength,
+      perception: dweller.perception,
+      endurance: dweller.endurance,
+      charism: dweller.charism,
+      intelligence: dweller.intelligence,
+      agility: dweller.agility,
+      luck: dweller.luck,
+      owner: dweller.owner,
     });
     DwellersLogRepository.save(log);
+  }
+  static async logParents(father: string, mother: string) {
+    const dad = await this.findOne({ id: father });
+    const mom = await this.findOne({ id: mother });
+    this.logDweller(dad);
+    this.logDweller(mom);
   }
 }

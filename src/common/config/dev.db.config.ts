@@ -1,5 +1,5 @@
 import { DataSourceOptions } from 'typeorm';
-import * as Entities from 'src/database/entities';
+import * as Entities from '../../../src/database/entities';
 
 export const DEV_DB_CONFIG: DataSourceOptions = {
   type: 'mysql',

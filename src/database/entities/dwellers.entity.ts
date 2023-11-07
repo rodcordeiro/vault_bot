@@ -7,13 +7,13 @@ import { DwellerTypes } from 'src/common/interfaces/dweller.interface';
   'idx_attrb',
   [
     'id',
-    'Strength',
-    'Perception',
-    'Endurance',
-    'Charisma',
-    'Intelligence',
-    'Agility',
-    'Luck',
+    'strength',
+    'perception',
+    'endurance',
+    'charism',
+    'intelligence',
+    'agility',
+    'luck',
   ],
   { unique: true, background: true },
 )
@@ -35,25 +35,25 @@ export class DwellersEntity extends BaseEntity {
   mother?: string;
 
   @Column({ type: 'int' })
-  Strength!: number;
+  strength!: number;
 
   @Column({ type: 'int' })
-  Perception!: number;
+  perception!: number;
 
   @Column({ type: 'int' })
-  Endurance!: number;
+  endurance!: number;
 
   @Column({ type: 'int' })
-  Charisma!: number;
+  charism!: number;
 
   @Column({ type: 'int' })
-  Intelligence!: number;
+  intelligence!: number;
 
   @Column({ type: 'int' })
-  Agility!: number;
+  agility!: number;
 
   @Column({ type: 'int' })
-  Luck!: number;
+  luck!: number;
 
   /** JOINS */
 

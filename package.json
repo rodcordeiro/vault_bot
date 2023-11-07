@@ -1,17 +1,16 @@
 {
   "name": "vault",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start:prod": "tsc -P . && node dist/index.js",
+    "start:prod": "node dist/index.js",
     "start:dev": "tsx watch src/index.ts",
     "prebuild": "npm run format && rimraf dist",
     "build": "tsc -b .",
     "format": "npm run lint && npm run prettier",
     "prettier": "prettier --ignore-path .eslintignore --write .",
-    "lint": "eslint --ignore-path .eslintignore --fix --ext .ts,.tsx,.js,.jsx .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --ignore-path .eslintignore --fix --ext .ts,.tsx,.js,.jsx ."
   },
   "keywords": [],
   "author": "Rodrigo Cordeiro <rodrigomendoncca@gmail.com> (https://rodcordeiro.com.br/)",

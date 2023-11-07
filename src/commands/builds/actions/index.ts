@@ -1,24 +1,24 @@
 import { ChatInputCommandInteraction } from 'discord.js';
-import { ListDwellers } from './list';
-import { CreateDweller } from './create';
-import { UpdateDweller } from './update';
-import { ViewDweller } from './view';
+import { ListBuilds } from './list';
+import { CreateBuild } from './create';
+import { UpdateBuild } from './update';
+import { ViewBuild } from './view';
 
 export const actionsMapper = async (
   interaction: ChatInputCommandInteraction,
 ) => {
   switch (interaction.options.getSubcommand()) {
     case 'list':
-      ListDwellers(interaction);
+      ListBuilds(interaction);
       break;
     case 'create':
-      CreateDweller(interaction);
+      CreateBuild(interaction);
       break;
     case 'update':
-      UpdateDweller(interaction);
+      UpdateBuild(interaction);
       break;
     case 'view':
-      ViewDweller(interaction);
+      ViewBuild(interaction);
       break;
     default:
       console.log(interaction);

@@ -3,11 +3,10 @@ import { Collection } from 'discord.js';
 import fs from 'fs';
 import { client } from '../core/discord/client.discord';
 import { RegisterCommands } from './register';
-import { BaseCommand } from '../common/commands/base.command';
+import { BaseCommandType } from '../common/commands/base.command';
 import { ModalHandlerIdentifier } from 'src/common/interfaces/modalHandler.interface';
 
 (async () => {
-  // @ts-ignore
   client.commands = new Collection();
   client.modalHandlers = [] as ModalHandlerIdentifier[];
   const commandsDir = fs
@@ -17,7 +16,7 @@ import { ModalHandlerIdentifier } from 'src/common/interfaces/modalHandler.inter
   const commands = await Promise.all(
     commandsDir.map(async (commandDir) => {
       try {
-        const command: BaseCommand = await import(
+        const command: BaseCommandType = await import(
           `./${commandDir}/${commandDir}.command`
         ).then((module) => new module.default());
         return command;
@@ -33,8 +32,7 @@ import { ModalHandlerIdentifier } from 'src/common/interfaces/modalHandler.inter
   );
   commands.map((command) => {
     console.debug(`[command] ${command?.data.name} imported`);
-    // @ts-ignore
-    client.commands?.set(command?.data.name, command);
+    client.commands?.set(command?.data.name, command!);
   });
   RegisterCommands();
 })();

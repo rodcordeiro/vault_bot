@@ -3,7 +3,7 @@ import { ChatInputCommandInteraction } from 'discord.js';
 import { DwellerServices } from 'src/services/dweller.service';
 import { DwellerProfileEmbed } from '../utils/list.embed';
 
-export const CreateDweller = async (
+export const UpdateDweller = async (
   interaction: ChatInputCommandInteraction,
 ) => {
   await interaction.deferReply({ ephemeral: false });
@@ -14,7 +14,7 @@ export const CreateDweller = async (
     ]) || [],
   );
 
-  const dweller = await DwellerServices.store({
+  const dweller = await DwellerServices.update(fields.dweller as string, {
     ...fields,
     owner: interaction.user.id,
   });
@@ -23,5 +23,6 @@ export const CreateDweller = async (
 
   return await interaction.editReply({
     embeds: [embed],
+    content: 'Dweller updated!',
   });
 };

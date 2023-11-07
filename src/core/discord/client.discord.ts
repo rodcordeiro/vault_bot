@@ -1,9 +1,9 @@
-import { Client, GatewayIntentBits, Partials } from 'discord.js';
+import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
+import { BaseCommandType } from 'src/common/commands/base.command';
 import { ModalHandlerIdentifier } from 'src/common/interfaces/modalHandler.interface';
 
 export const client: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  commands?: any[];
+  commands?: Collection<unknown, BaseCommandType>;
   modalHandlers?: ModalHandlerIdentifier[];
 } & Client = new Client({
   intents: [
