@@ -1,5 +1,5 @@
 import { APIEmbedField, Colors, EmbedBuilder } from 'discord.js';
-import { DwellersEntity } from 'src/database/entities';
+import { DwellersEntity } from '../../../database/entities';
 
 export const DwellersEmbed = (
   dwellers: DwellersEntity[],

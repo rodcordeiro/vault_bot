@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
-import { BaseCommand } from 'src/common/commands/base.command';
+import { BaseCommand } from '../../common/commands/base.command';
 
 export default class CleanupCommand extends BaseCommand {
   constructor() {

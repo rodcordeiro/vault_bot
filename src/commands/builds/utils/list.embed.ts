@@ -1,5 +1,5 @@
 import { APIEmbedField, Colors, EmbedBuilder } from 'discord.js';
-import { BuildEntity } from 'src/database/entities';
+import { BuildEntity } from '../../../database/entities';
 
 export const PaginatedBuildEmbeded = (
   builds: BuildEntity[],

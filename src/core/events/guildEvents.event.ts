@@ -1,7 +1,8 @@
 import { Events } from 'discord.js';
-import { GuildServices } from '../../services/guild.service';
 
+import { GuildServices } from '../../services/guild.service';
 import { client } from '../discord/client.discord';
+
 client.on(Events.GuildCreate, async (guild) => {
   await GuildServices.CreateOrUpdate({
     id: guild.id,

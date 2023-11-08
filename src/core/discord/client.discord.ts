@@ -1,6 +1,6 @@
 import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
-import { BaseCommandType } from 'src/common/commands/base.command';
-import { ModalHandlerIdentifier } from 'src/common/interfaces/modalHandler.interface';
+import { BaseCommandType } from '../../common/commands/base.command';
+import { ModalHandlerIdentifier } from '../../common/interfaces/modalHandler.interface';
 
 export const client: {
   commands?: Collection<unknown, BaseCommandType>;

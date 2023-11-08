@@ -4,7 +4,7 @@ import fs from 'fs';
 import { client } from '../core/discord/client.discord';
 import { RegisterCommands } from './register';
 import { BaseCommandType } from '../common/commands/base.command';
-import { ModalHandlerIdentifier } from 'src/common/interfaces/modalHandler.interface';
+import { ModalHandlerIdentifier } from '../common/interfaces/modalHandler.interface';
 
 (async () => {
   client.commands = new Collection();

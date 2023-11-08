@@ -1,8 +1,8 @@
 import { ChatInputCommandInteraction } from 'discord.js';
 import { Pagination } from 'pagination.djs';
-import { createBatch } from 'src/common/helpers/batch.helper';
+import { createBatch } from '../../../../common/helpers/batch.helper';
 import { PaginatedBuildEmbeded } from '../../utils/list.embed';
-import { BuildsService } from 'src/services/build.service';
+import { BuildsService } from '../../../../services/build.service';
 
 export const ListBuilds = async (interaction: ChatInputCommandInteraction) => {
   await interaction.deferReply({ ephemeral: false });

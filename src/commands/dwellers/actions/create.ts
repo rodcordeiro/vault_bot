@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ChatInputCommandInteraction } from 'discord.js';
-import { DwellerServices } from 'src/services/dweller.service';
+import { DwellerServices } from '../../../services/dweller.service';
 import { DwellerProfileEmbed } from '../utils/list.embed';
 
 export const CreateDweller = async (

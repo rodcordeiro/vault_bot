@@ -4,8 +4,8 @@ import {
   AutocompleteInteraction,
 } from 'discord.js';
 
-import { BaseCommand } from 'src/common/commands/base.command';
-import { BuildsService } from 'src/services/build.service';
+import { BaseCommand } from '../../common/commands/base.command';
+import { BuildsService } from '../../services/build.service';
 import { actionsMapper } from './actions';
 
 type AutocompleteOption = {

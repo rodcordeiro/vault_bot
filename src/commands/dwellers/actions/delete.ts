@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction } from 'discord.js';
-import { DwellerServices } from 'src/services/dweller.service';
+import { DwellerServices } from '../../../services/dweller.service';
 
 export const DeleteDweller = async (
   interaction: ChatInputCommandInteraction,

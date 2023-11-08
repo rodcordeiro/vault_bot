@@ -3,9 +3,9 @@ import { FindOneOptions } from 'typeorm';
 import {
   DwellersLogRepository,
   DwellersRepository,
-} from 'src/database/repositories';
-import { DwellersEntity } from 'src/database/entities/dwellers.entity';
-import { Model } from 'src/common/interfaces/database.interface';
+} from '../database/repositories';
+import { DwellersEntity } from '../database/entities/dwellers.entity';
+import { Model } from '../common/interfaces/database.interface';
 
 export class DwellerServices {
   static async list(owner: string) {

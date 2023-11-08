@@ -4,11 +4,11 @@ import {
   AutocompleteInteraction,
 } from 'discord.js';
 
-import { BaseCommand } from 'src/common/commands/base.command';
+import { BaseCommand } from '../../common/commands/base.command';
 
 import { actionsMapper } from './actions';
-import { DwellerServices } from 'src/services/dweller.service';
-import { DwellerTypes } from 'src/common/interfaces/dweller.interface';
+import { DwellerServices } from '../../services/dweller.service';
+import { DwellerTypes } from '../../common/interfaces/dweller.interface';
 
 type AutocompleteOption = {
   name: string;
