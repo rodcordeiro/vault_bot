@@ -15,13 +15,22 @@ export class DwellerServices {
       order: {
         name: 'ASC',
       },
+      relations: ['assignment'],
     });
   }
 
   static async findOne(options: FindOneOptions<DwellersEntity>['where']) {
     return await DwellersRepository.findOneOrFail({
       where: options,
-      // relations: ['assignment'],
+      relations: ['assignment'],
+      relationLoadStrategy: 'join',
+    });
+  }
+  static async teste(options: FindOneOptions<DwellersEntity>['where']) {
+    return await DwellersRepository.findOneOrFail({
+      where: options,
+      relations: ['assignment'],
+      relationLoadStrategy: 'join',
     });
   }
 

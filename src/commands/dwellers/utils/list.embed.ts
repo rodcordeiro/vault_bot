@@ -1,14 +1,19 @@
 import { APIEmbedField, Colors, EmbedBuilder } from 'discord.js';
 import { DwellersEntity } from '../../../database/entities';
+type Metadata = {
+  page: number;
+  totalPages: number;
+  dwellersPerPage: number;
+  totalDwellers: number;
+};
 
 export const DwellersEmbed = (
   dwellers: DwellersEntity[],
-  currentPage: number,
-  pages: number,
+  metadata: Metadata,
 ) => {
   const embed = new EmbedBuilder()
     .setColor(Colors.Blurple)
-    .setTitle('Here is all your dwellers!')
+    .setTitle(`Here is the report of all Dwellers:`)
     .setAuthor({
       name: 'Dweller vault manager',
     })
@@ -16,7 +21,7 @@ export const DwellersEmbed = (
       'https://freepngimg.com/save/140471-pip-boy-images-fallout-download-free-image/1600x2350',
     )
     .setFooter({
-      text: `Page: ${currentPage}/${pages}`,
+      text: `Page: ${metadata.page}/${metadata.totalPages}. Dwellers: ${metadata.totalDwellers}`,
     });
   dwellers.map((dweller) =>
     embed.addFields([
@@ -103,6 +108,11 @@ export const DwellerProfileEmbed = (dweller: DwellersEntity) => {
       {
         name: 'Born in the vault? ',
         value: dweller.father ? 'Yes' : 'No',
+        inline: true,
+      },
+      {
+        name: 'Job: ',
+        value: dweller.assignment?.job.name || '\u200B',
         inline: true,
       },
     ]);
