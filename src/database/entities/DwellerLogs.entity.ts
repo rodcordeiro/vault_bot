@@ -1,6 +1,6 @@
 import { Entity, Column } from 'typeorm';
-import { BaseEntity } from 'src/common/entities/base.entity';
-import { DwellerTypes } from 'src/common/interfaces/dweller.interface';
+import { BaseEntity } from '../../common/entities/base.entity';
+import { DwellerTypes } from '../../common/interfaces/dweller.interface';
 
 @Entity('tb_dwellers_logs')
 export class DwellersLogEntity extends BaseEntity {

@@ -1,8 +1,8 @@
 import { FindOneOptions } from 'typeorm';
 
-import { BuildRepository } from 'src/database/repositories';
-import { BuildEntity } from 'src/database/entities/builds.entity';
-import { Model } from 'src/common/interfaces/database.interface';
+import { BuildRepository } from '../database/repositories';
+import { BuildEntity } from '../database/entities/builds.entity';
+import { Model } from '../common/interfaces/database.interface';
 
 export class BuildsService {
   static async list(owner: string) {

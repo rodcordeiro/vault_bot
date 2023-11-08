@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ChatInputCommandInteraction } from 'discord.js';
-import { BuildsService } from 'src/services/build.service';
+import { BuildsService } from '../../../../services/build.service';
 import { BuildEmbeded } from '../../utils/list.embed';
 
 export const ViewBuild = async (interaction: ChatInputCommandInteraction) => {

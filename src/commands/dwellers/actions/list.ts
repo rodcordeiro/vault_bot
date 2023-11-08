@@ -1,7 +1,7 @@
 import { ChatInputCommandInteraction } from 'discord.js';
 import { Pagination } from 'pagination.djs';
-import { createBatch } from 'src/common/helpers/batch.helper';
-import { DwellerServices } from 'src/services/dweller.service';
+import { createBatch } from '../../../common/helpers/batch.helper';
+import { DwellerServices } from '../../../services/dweller.service';
 import { DwellersEmbed } from '../utils/list.embed';
 
 export const ListDwellers = async (

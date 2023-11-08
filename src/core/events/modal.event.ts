@@ -1,6 +1,6 @@
 import { Events } from 'discord.js';
 
-import { client } from 'src/core/discord/client.discord';
+import { client } from '../discord/client.discord';
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isModalSubmit()) return;

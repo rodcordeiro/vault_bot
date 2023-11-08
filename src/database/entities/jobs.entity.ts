@@ -1,5 +1,5 @@
 import { Entity, Column, OneToOne } from 'typeorm';
-import { BaseEntity } from 'src/common/entities/base.entity';
+import { BaseEntity } from '../../common/entities/base.entity';
 import { BuildEntity } from './builds.entity';
 
 @Entity('tb_jobs')
