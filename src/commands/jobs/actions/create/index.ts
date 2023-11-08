@@ -12,8 +12,9 @@ export const CreateJob = async (interaction: ChatInputCommandInteraction) => {
   );
 
   const job = await JobsService.store({
-    ...fields,
-    owner: interaction.user.id,
+    name: String(fields.name),
+    place: String(fields.place),
+    owner: String(interaction.user.id),
   });
 
   const embed = JobEmbeded(job);

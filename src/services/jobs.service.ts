@@ -23,7 +23,7 @@ export class JobsService {
     });
   }
 
-  static async store(payload: { name: string; place: string }) {
+  static async store(payload: { name: string; place: string; owner: string }) {
     const place = await BuildsService.findOne({ id: payload.place! });
     const job = JobsRepository.create({
       ...payload,
@@ -32,7 +32,10 @@ export class JobsService {
     return await JobsRepository.save(job);
   }
 
-  static async update(id: string, payload: { name?: string; place?: string }) {
+  static async update(
+    id: string,
+    payload: { owner: string; name?: string; place?: string },
+  ) {
     const job = await JobsRepository.findOneByOrFail({
       id,
     });
