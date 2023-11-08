@@ -57,8 +57,7 @@ export class DwellersEntity extends BaseEntity {
   luck!: number;
 
   /** JOINS */
-  @OneToOne(() => AssignmentEntity, (assign) => assign.dweller)
-  @JoinColumn()
+  @OneToOne(() => AssignmentEntity, (assign) => assign.dweller, { eager: true })
   assignment?: AssignmentEntity;
 
   /** METHODS */

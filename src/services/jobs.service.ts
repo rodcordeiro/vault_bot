@@ -61,6 +61,7 @@ export class JobsService {
       owner,
     };
     const assignment = AssignmentRepository.create(payload);
+    await DwellerServices.update(dweller.id, { assignment });
     return await AssignmentRepository.save(assignment);
   }
 }

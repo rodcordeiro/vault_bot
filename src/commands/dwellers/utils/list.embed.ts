@@ -112,7 +112,7 @@ export const DwellerProfileEmbed = (dweller: DwellersEntity) => {
       },
       {
         name: 'Job: ',
-        value: dweller.assignment?.job.name || '\u200B',
+        value: dweller.assignment ? dweller.assignment.job.name : '\u200B',
         inline: true,
       },
     ]);

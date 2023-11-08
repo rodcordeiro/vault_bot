@@ -23,7 +23,6 @@ export class BuildEntity extends BaseEntity {
 
   /** JOINS */
   @OneToOne(() => JobsEntity, (job) => job.place)
-  @JoinColumn()
   job?: string;
 
   /** METHODS */

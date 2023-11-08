@@ -12,14 +12,15 @@ export class AssignmentEntity extends BaseEntity {
     onUpdate: 'SET NULL',
     onDelete: 'SET NULL',
   })
-  @JoinColumn({ name: 'dweller' })
+  @JoinColumn({ name: 'dweller', referencedColumnName: 'id' })
   dweller!: DwellersEntity;
 
   @ManyToOne(() => JobsEntity, (job) => job.assignments, {
     onUpdate: 'SET NULL',
     onDelete: 'SET NULL',
+    eager: true,
   })
-  @JoinColumn({ name: 'job' })
+  @JoinColumn({ name: 'job', referencedColumnName: 'id' })
   job!: JobsEntity;
 
   /** METHODS */

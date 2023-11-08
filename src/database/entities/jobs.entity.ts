@@ -13,12 +13,12 @@ export class JobsEntity extends BaseEntity {
   @OneToOne(() => BuildEntity, (build) => build.job, {
     onUpdate: 'SET NULL',
     onDelete: 'SET NULL',
+    eager: true,
   })
-  @JoinColumn({ name: 'place' })
+  @JoinColumn({ name: 'place', referencedColumnName: 'id' })
   place!: BuildEntity;
 
   @OneToMany(() => AssignmentEntity, (assign) => assign.job)
-  @JoinColumn()
   assignments?: AssignmentEntity[];
   /** METHODS */
 }

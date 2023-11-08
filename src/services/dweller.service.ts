@@ -22,14 +22,29 @@ export class DwellerServices {
   static async findOne(options: FindOneOptions<DwellersEntity>['where']) {
     return await DwellersRepository.findOneOrFail({
       where: options,
-      relations: ['assignment'],
       relationLoadStrategy: 'join',
     });
   }
   static async teste(options: FindOneOptions<DwellersEntity>['where']) {
     return await DwellersRepository.findOneOrFail({
       where: options,
-      relations: ['assignment'],
+      select: [
+        'agility',
+        'assignment',
+        'charism',
+        'endurance',
+        'father',
+        'mother',
+        'gender',
+        'id',
+        'intelligence',
+        'luck',
+        'lvl',
+        'name',
+        'owner',
+        'perception',
+        'strength',
+      ],
       relationLoadStrategy: 'join',
     });
   }
