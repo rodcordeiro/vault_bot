@@ -1,4 +1,4 @@
-import { Entity, Column, Index, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, Index, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
 import { DwellerTypes } from '../../common/interfaces/dweller.interface';
 import { AssignmentEntity } from './assignment.entity';
