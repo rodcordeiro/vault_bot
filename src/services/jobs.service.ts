@@ -55,12 +55,21 @@ export class JobsService {
   static async assign(id: string, dwellerId: string, owner: string) {
     const dweller = await DwellerServices.findOne({ id: dwellerId });
     const job = await this.findOne({ id });
+    const alreadyAssigned = await AssignmentRepository.findOneBy({
+      dweller: { id: dwellerId },
+    });
+
     const payload = {
       dweller,
       job,
       owner,
     };
-    const assignment = AssignmentRepository.create(payload);
+
+    const assignment = alreadyAssigned || AssignmentRepository.create(payload);
+    if (alreadyAssigned) {
+      AssignmentRepository.merge(alreadyAssigned, payload);
+    }
+
     await DwellerServices.update(dweller.id, { assignment });
     return await AssignmentRepository.save(assignment);
   }
