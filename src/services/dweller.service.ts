@@ -15,13 +15,37 @@ export class DwellerServices {
       order: {
         name: 'ASC',
       },
+      relations: ['assignment'],
     });
   }
 
   static async findOne(options: FindOneOptions<DwellersEntity>['where']) {
     return await DwellersRepository.findOneOrFail({
       where: options,
-      // relations: ['assignment'],
+      relationLoadStrategy: 'join',
+    });
+  }
+  static async teste(options: FindOneOptions<DwellersEntity>['where']) {
+    return await DwellersRepository.findOneOrFail({
+      where: options,
+      select: [
+        'agility',
+        'assignment',
+        'charism',
+        'endurance',
+        'father',
+        'mother',
+        'gender',
+        'id',
+        'intelligence',
+        'luck',
+        'lvl',
+        'name',
+        'owner',
+        'perception',
+        'strength',
+      ],
+      relationLoadStrategy: 'join',
     });
   }
 

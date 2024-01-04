@@ -9,8 +9,14 @@ export const ListDwellers = async (
 ) => {
   await interaction.deferReply({ ephemeral: false });
   const dwellers = await DwellerServices.list(interaction.user.id);
+  console.log(dwellers[0]);
   const Embeds = createBatch(dwellers, 6).map((data, index, arr) =>
-    DwellersEmbed(data, index + 1, arr.length),
+    DwellersEmbed(data, {
+      dwellersPerPage: data.length,
+      totalDwellers: dwellers.length,
+      page: index + 1,
+      totalPages: arr.length,
+    }),
   );
 
   if (Embeds.length === 1) {

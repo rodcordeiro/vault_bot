@@ -1,6 +1,7 @@
-import { Entity, Column, OneToOne } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
 import { BuildEntity } from './builds.entity';
+import { AssignmentEntity } from './assignment.entity';
 
 @Entity('tb_jobs')
 export class JobsEntity extends BaseEntity {
@@ -9,11 +10,15 @@ export class JobsEntity extends BaseEntity {
   name!: string;
 
   /** JOINS */
-  @OneToOne(() => BuildEntity, (build) => build.id, {
+  @OneToOne(() => BuildEntity, (build) => build.job, {
     onUpdate: 'SET NULL',
     onDelete: 'SET NULL',
+    eager: true,
   })
-  place!: string;
+  @JoinColumn({ name: 'place', referencedColumnName: 'id' })
+  place!: BuildEntity;
 
+  @OneToMany(() => AssignmentEntity, (assign) => assign.job)
+  assignments?: AssignmentEntity[];
   /** METHODS */
 }

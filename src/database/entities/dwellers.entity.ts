@@ -1,6 +1,7 @@
-import { Entity, Column, Index } from 'typeorm';
+import { Entity, Column, Index, OneToOne } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
 import { DwellerTypes } from '../../common/interfaces/dweller.interface';
+import { AssignmentEntity } from './assignment.entity';
 
 @Entity('tb_dwellers')
 @Index(
@@ -56,6 +57,8 @@ export class DwellersEntity extends BaseEntity {
   luck!: number;
 
   /** JOINS */
+  @OneToOne(() => AssignmentEntity, (assign) => assign.dweller, { eager: true })
+  assignment?: AssignmentEntity;
 
   /** METHODS */
 }

@@ -10,7 +10,6 @@ export const ViewDweller = async (interaction: ChatInputCommandInteraction) => {
     id: String(id),
     owner: interaction.user.id,
   });
-
   const embed = DwellerProfileEmbed(dweller);
 
   return await interaction.editReply({
