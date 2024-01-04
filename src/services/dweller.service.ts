@@ -5,7 +5,10 @@ import {
   DwellersRepository,
 } from '../database/repositories';
 import { DwellersEntity } from '../database/entities/dwellers.entity';
-import { Model } from '../common/interfaces/database.interface';
+import {
+  DwellerLogTypes,
+  Model,
+} from '../common/interfaces/database.interface';
 
 export class DwellerServices {
   static async list(owner: string) {
@@ -75,7 +78,10 @@ export class DwellerServices {
     await DwellersRepository.delete({ id });
   }
 
-  static async logDweller(dweller: Model<DwellersEntity, true>) {
+  static async logDweller(
+    dweller: Model<DwellersEntity, true>,
+    parent?: boolean,
+  ) {
     const log = DwellersLogRepository.create({
       dweller: dweller.id,
       name: dweller.name,
@@ -91,13 +97,16 @@ export class DwellerServices {
       agility: dweller.agility,
       luck: dweller.luck,
       owner: dweller.owner,
+      action: parent
+        ? DwellerLogTypes.DWELLER_CHILDREN
+        : DwellerLogTypes.DWELLER_BORN,
     });
     DwellersLogRepository.save(log);
   }
   static async logParents(father: string, mother: string) {
     const dad = await this.findOne({ id: father });
     const mom = await this.findOne({ id: mother });
-    this.logDweller(dad);
-    this.logDweller(mom);
+    this.logDweller(dad, true);
+    this.logDweller(mom, true);
   }
 }

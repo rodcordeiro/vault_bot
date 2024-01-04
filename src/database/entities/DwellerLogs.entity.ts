@@ -44,6 +44,9 @@ export class DwellersLogEntity extends BaseEntity {
   @Column({ type: 'int' })
   luck!: number;
 
+  @Column({ type: 'varchar', length: '100' })
+  action!: string;
+
   /** JOINS */
   /** METHODS */
 }
