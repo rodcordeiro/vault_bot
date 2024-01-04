@@ -242,13 +242,21 @@ export default class DwellersListCommand extends BaseCommand {
 
     if (focusedValue.name === 'father') {
       filtered = dwellers
-        .filter((dweller) => dweller.gender === DwellerTypes.Gender.Male)
+        .filter(
+          (dweller) =>
+            dweller.gender === DwellerTypes.Gender.Male &&
+            dweller.name?.toLowerCase().includes(focusedValue.value),
+        )
         .map(({ name, id }) => ({ name, value: id }));
     }
 
     if (focusedValue.name === 'mother') {
       filtered = dwellers
-        .filter((dweller) => dweller.gender === DwellerTypes.Gender.Female)
+        .filter(
+          (dweller) =>
+            dweller.gender === DwellerTypes.Gender.Female &&
+            dweller.name?.toLowerCase().includes(focusedValue.value),
+        )
         .map(({ name, id }) => ({ name, value: id }));
     }
 

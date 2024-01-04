@@ -7,7 +7,6 @@ export const AssignJob = async (interaction: ChatInputCommandInteraction) => {
   const job = interaction.options.getString('job');
   const dwellerId = interaction.options.getString('dweller');
 
-
   const assignment = await JobsService.assign(
     job!,
     dwellerId!,

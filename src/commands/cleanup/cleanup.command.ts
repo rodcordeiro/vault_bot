@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
 import { BaseCommand } from '../../common/commands/base.command';
 
@@ -10,8 +11,33 @@ export default class CleanupCommand extends BaseCommand {
   }
 
   async execute(interaction: ChatInputCommandInteraction) {
-    const channel = await interaction.channel;
-    console.log(channel?.id);
-    await interaction.reply({ content: 'Pong!', ephemeral: true });
+    try {
+      const messages = await interaction.channel?.messages
+        .fetch()
+        .then((data) => data.filter((message) => message.deletable))
+        .then(async (data) => {
+          const len = data.size;
+
+          return {
+            len,
+            promises: data.each(
+              (message) =>
+                new Promise((resolve) => {
+                  message.delete().then(() => resolve(true));
+                }),
+            ),
+          };
+        })
+        .catch((err) => {
+          throw err;
+        });
+      await interaction.reply({
+        content: `${messages?.len} messages included for deleting. Processing it all.`,
+      }),
+        await Promise.all(messages!.promises);
+    } catch (e) {
+      console.error(e);
+      await interaction.reply('fudeu');
+    }
   }
 }
