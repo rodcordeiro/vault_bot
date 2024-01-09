@@ -28,28 +28,20 @@ export class DwellerServices {
       relationLoadStrategy: 'join',
     });
   }
-  static async teste(options: FindOneOptions<DwellersEntity>['where']) {
-    return await DwellersRepository.findOneOrFail({
+  static async view(options: FindOneOptions<DwellersEntity>['where']) {
+    const dweller = await DwellersRepository.findOneOrFail({
       where: options,
-      select: [
-        'agility',
-        'assignment',
-        'charism',
-        'endurance',
-        'father',
-        'mother',
-        'gender',
-        'id',
-        'intelligence',
-        'luck',
-        'lvl',
-        'name',
-        'owner',
-        'perception',
-        'strength',
-      ],
       relationLoadStrategy: 'join',
     });
+    // console.log(dweller);
+
+    if (dweller.father)
+      dweller.father = (await this.findOne({ id: dweller.father })).name;
+
+    if (dweller.mother)
+      dweller.mother = (await this.findOne({ id: dweller.mother })).name;
+
+    return dweller;
   }
 
   static async store(payload: Model<DwellersEntity>) {

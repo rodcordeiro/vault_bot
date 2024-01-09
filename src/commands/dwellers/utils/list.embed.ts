@@ -106,13 +106,20 @@ export const DwellerProfileEmbed = (dweller: DwellersEntity) => {
       { name: '\u200B', value: '\u200B', inline: true },
       { name: '\u200B', value: '\u200B', inline: true },
       {
-        name: 'Born in the vault? ',
-        value: dweller.father ? 'Yes' : 'No',
+        name: 'Job: ',
+        value: dweller.assignment ? dweller.assignment.job.name : '\u200B',
+        inline: true,
+      },
+      { name: '\u200B', value: '\u200B', inline: true },
+      { name: '\u200B', value: '\u200B', inline: true },
+      {
+        name: 'Father: ',
+        value: dweller.father || '\u200B',
         inline: true,
       },
       {
-        name: 'Job: ',
-        value: dweller.assignment ? dweller.assignment.job.name : '\u200B',
+        name: 'Mother: ',
+        value: dweller.mother || '\u200B',
         inline: true,
       },
     ]);
