@@ -2,7 +2,7 @@ import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
 import { DwellerTypes } from '../../common/interfaces/dweller.interface';
 
-@Entity('tb_dwellers_logs')
+@Entity('vb_tb_dwellers_logs')
 export class DwellersLogEntity extends BaseEntity {
   /** COLUMNS */
   @Column({ type: 'uuid' })

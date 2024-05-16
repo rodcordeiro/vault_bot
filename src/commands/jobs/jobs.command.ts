@@ -123,8 +123,8 @@ export default class BuildsCommand extends BaseCommand {
 
     if (focusedValue.name === 'place') {
       filtered = builds
-        .filter(
-          (build) => build.name?.toLowerCase().includes(focusedValue.value),
+        .filter((build) =>
+          build.name?.toLowerCase().includes(focusedValue.value),
         )
         .map(({ name, id }) => ({ name, value: id }));
     }
@@ -133,8 +133,8 @@ export default class BuildsCommand extends BaseCommand {
       const job = interaction.options.get('job');
       const selectedJob = jobs.find((j) => j.id === job?.value);
       filtered = dwellers
-        .filter(
-          (dweller) => dweller.name?.toLowerCase().includes(focusedValue.value),
+        .filter((dweller) =>
+          dweller.name?.toLowerCase().includes(focusedValue.value),
         )
         .sort((a, b) => {
           const first = a[Attribute(selectedJob!.place.attribute)];

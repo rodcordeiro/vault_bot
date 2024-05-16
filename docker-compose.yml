@@ -10,10 +10,10 @@ services:
     networks:
       - bots
     logging:
-      driver: "json-file"  # You can choose a different driver if needed
+      driver: 'json-file' # You can choose a different driver if needed
       options:
-        max-size: "5m"  # Maximum size of a single log file
-        max-file: "1"    # Maximum number of log files to retain
+        max-size: '5m' # Maximum size of a single log file
+        max-file: '1' # Maximum number of log files to retain
 
 networks:
   bots:

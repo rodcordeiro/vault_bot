@@ -173,8 +173,8 @@ export default class BuildsCommand extends BaseCommand {
 
     if (focusedValue.name === 'build') {
       filtered = builds
-        .filter(
-          (dweller) => dweller.name?.toLowerCase().includes(focusedValue.value),
+        .filter((dweller) =>
+          dweller.name?.toLowerCase().includes(focusedValue.value),
         )
         .map(({ name, id }) => ({ name, value: id }));
     }

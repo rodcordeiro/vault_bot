@@ -50,7 +50,7 @@ export class DwellerServices {
     }
     const dweller = DwellersRepository.create(payload);
     await DwellersRepository.save(dweller);
-    await DwellerServices.logDweller(dweller);
+    await DwellerServices.logDweller(dweller, DwellerLogTypes.DWELLER_BORN);
     return dweller;
   }
 
@@ -58,21 +58,26 @@ export class DwellerServices {
     const dweller = await DwellersRepository.findOneByOrFail({
       id,
     });
-    DwellerServices.logDweller({
-      ...payload,
-      id,
-    });
+    DwellerServices.logDweller(
+      {
+        ...payload,
+        id,
+      },
+      DwellerLogTypes.DWELLER_UPDATE,
+    );
     DwellersRepository.merge(dweller, payload);
     return await DwellersRepository.save(dweller);
   }
   static async Delete(id: string) {
-    await DwellersRepository.findOneByOrFail({ id });
+    const dweller = await DwellersRepository.findOneByOrFail({ id });
     await DwellersRepository.delete({ id });
+    this.logDweller(dweller, DwellerLogTypes.DWELLER_REMOVAL);
   }
 
   static async logDweller(
     dweller: Model<DwellersEntity, true>,
-    parent?: boolean,
+
+    action: DwellerLogTypes,
   ) {
     const log = DwellersLogRepository.create({
       dweller: dweller.id,
@@ -89,16 +94,14 @@ export class DwellerServices {
       agility: dweller.agility,
       luck: dweller.luck,
       owner: dweller.owner,
-      action: parent
-        ? DwellerLogTypes.DWELLER_CHILDREN
-        : DwellerLogTypes.DWELLER_BORN,
+      action,
     });
     DwellersLogRepository.save(log);
   }
   static async logParents(father: string, mother: string) {
     const dad = await this.findOne({ id: father });
     const mom = await this.findOne({ id: mother });
-    this.logDweller(dad, true);
-    this.logDweller(mom, true);
+    this.logDweller(dad, DwellerLogTypes.DWELLER_CHILDREN);
+    this.logDweller(mom, DwellerLogTypes.DWELLER_CHILDREN);
   }
 }

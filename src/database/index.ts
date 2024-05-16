@@ -1,7 +1,12 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import * as Entities from './entities';
+import * as path from 'path';
 
+const migrationsPath = path.resolve(
+  __dirname,
+  '../database/migrations/{*.ts,*.js}',
+);
 export const AppDataSource = new DataSource({
   type: 'mysql',
   host: process.env.DB_HOST,
@@ -10,6 +15,11 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PWD,
   database: process.env.DB_NAME,
   entities: Entities,
-  synchronize: true,
+  migrations: [migrationsPath],
+  synchronize: false,
+  migrationsRun: true,
+  migrationsTableName: 'vb_tb_migrations',
+  // logging: true,
+  name: 'database',
   // debug: true,
 });
