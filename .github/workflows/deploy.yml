@@ -2,8 +2,8 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
-  
+    branches: ['main']
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha  
+            type=sha
       # BUILD AND PUSH DOCKER IMAGES
       - name: Build and push Docker images
         uses: docker/build-push-action@v5.3.0
@@ -50,5 +50,3 @@ jobs:
           push: true
           tags: rodcordeiro/vault-bot:latest,rodcordeiro/vault-bot:${{ steps.version.outputs.PKG_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
-      
-  
