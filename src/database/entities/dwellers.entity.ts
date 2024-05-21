@@ -3,7 +3,7 @@ import { BaseEntity } from '../../common/entities/base.entity';
 import { DwellerTypes } from '../../common/interfaces/dweller.interface';
 import { AssignmentEntity } from './assignment.entity';
 
-@Entity('tb_dwellers')
+@Entity('vb_tb_dwellers')
 @Index(
   'idx_attrb',
   [

@@ -3,7 +3,7 @@ import { BaseEntity } from '../../common/entities/base.entity';
 import { DwellerTypes } from '../../common/interfaces/dweller.interface';
 import { JobsEntity } from './jobs.entity';
 
-@Entity('tb_build')
+@Entity('vb_tb_builds')
 export class BuildEntity extends BaseEntity {
   /** COLUMNS */
   @Column({ type: 'varchar', length: 40 })

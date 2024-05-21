@@ -1,7 +1,7 @@
 import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
 
-@Entity({ name: 'kb_tb_guild' })
+@Entity({ name: 'vb_tb_guild' })
 export class GuildEntity extends BaseEntity {
   @Column({ type: 'varchar' })
   guildId!: string;

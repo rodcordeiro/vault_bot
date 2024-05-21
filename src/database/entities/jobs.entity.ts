@@ -3,7 +3,7 @@ import { BaseEntity } from '../../common/entities/base.entity';
 import { BuildEntity } from './builds.entity';
 import { AssignmentEntity } from './assignment.entity';
 
-@Entity('tb_jobs')
+@Entity('vb_tb_jobs')
 export class JobsEntity extends BaseEntity {
   /** COLUMNS */
   @Column({ type: 'varchar', length: 40, nullable: false })

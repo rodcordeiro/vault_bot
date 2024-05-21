@@ -4,8 +4,6 @@ WORKDIR /vault
 
 COPY . .
 
-RUN yarn
-
-RUN yarn build
+RUN yarn && yarn build
 
 CMD [ "yarn", "start:dev" ]
