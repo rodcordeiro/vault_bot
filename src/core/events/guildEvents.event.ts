@@ -7,10 +7,10 @@ client.on(Events.GuildCreate, async (guild) => {
   // await GuildServices.CreateOrUpdate({
   //   id: guild.id,
   // });
-  console.log("guild_guild::create", guild);
+  console.log('guild_guild::create', guild);
 });
 
-client.on(Events.GuildDelete, async (guild) => {
+client.on(Events.GuildDelete, async (_guild) => {
   // await GuildServices.Delete({
   //   id: guild.id,
   // });
